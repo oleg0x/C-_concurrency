@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-void simpleTest()
+void testThreadsafeMap()
 {
 	cout << "\n---------- " << __func__ << " ----------\n";
 	ThreadsafeMap<string, int> tm;
@@ -66,7 +66,7 @@ void Baz(uint32_t n1, uint32_t n2)
 		tmap.remove(i);
 }
 
-void multithreadingTest()
+void testThreadsafeMapMultithread()
 {
 	cout << "\n---------- " << __func__ << " ----------\n";
 	using namespace std::chrono;
