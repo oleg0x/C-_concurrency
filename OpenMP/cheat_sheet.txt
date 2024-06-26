@@ -1,0 +1,89 @@
+Barrier
+Each thread wait at the barrier until all threads arrive.
+#pragma omp barrier
+
+Mutual Exclusion
+Define a block of code (critical section) that only one thread at a time can execute.
+#pragma omp critical
+
+Atomic
+#pragma omp atomic
+x binop= expr,
+++x, x++,
+--x, x--
+
+#pragma omp parallel shared(a, b, c) private(d, e)
+#pragma omp for
+
+#pragma omp parallel for schedule(static, 100000)
+schedule(static [,chunk])
+schedule(dynamic [,chunk])
+schedule(guided [,chunk])
+schedule(runtime)
+schedule(auto)
+
+#pragma omp parallel for reduction(op : var)
+#pragma omp parallel for reduction(+ : sum)
+Operators: +, -, *, min, max
+Initial values: 0 for +, 0 for -, 1 for *, largest pos num, most neg num
+
+#pragma omp for nowait		// The opposite to a barrier
+#pragma omp master			// Only main thread without barrier
+#pragma omp single			// Any one thread with a barrier
+#pragma omp single nowait	// Any one thread without a barrier
+
+#pragma omp parallel
+#pragma omp sections
+{
+	#pragma omp section
+		// structured_block_1 in a separate thread
+	#pragma omp section
+		// structured_block_2 in a separate thread
+	#pragma omp section
+		// structured_block_3 in a separate thread
+}
+
+omp_set_dynamic()
+omp_get_dynamic()
+
+omp_num_procs()
+omp_get_max_threads()
+
+omp_set_num_threads()
+omp_get_num_threads()
+omp_get_thread_num()
+omp_set_num_threads(omp_num_procs())
+
+omp_in_parallel()
+
+omp_init_lock()
+omp_set_lock()
+omp_unset_lock()
+omp_test_lock()
+omp_destroy_lock()
+
+Environment variables:
+OMP_NUM_THREADS
+OMP_STACKSIZE
+OMP_WAIT_POLICY				// ACTIVE or PASSIVE
+OMP_PROC_BIND				// TRUE or FALSE
+
+Variables shared among threads:
+- dynamic allocated
+- global
+- static
+
+Variables not shared among threads:
+- automatic vars in parallel region
+- stack vars in functions called from parallel region
+
+Changing attributes:
+- shared
+- private
+- firstprivate
+- lastprivate
+- default(private|shared|none)
+
+
+
+
